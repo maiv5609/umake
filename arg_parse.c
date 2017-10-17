@@ -4,6 +4,36 @@
 #include <ctype.h>
 #include "arg_parse.h"
 
+/* CURRENTLY WORKING ON: ISSUE 5
+ * 1 umake.o: umake.c arg_parse.h
+ * 2			gcc -c umake.c
+ *
+ * umake.o is the target while umake.c and arg_parse.h are the dependencies
+ * we are not doing anything with the dependencies yet but need to store them
+ * line 2 is a rule that the target will need to execute and can have multiple rules
+ *
+ * in target.c and target.h you need to collect and store the:
+ *			target
+ *			dependencies
+ *			rules
+ * "This should include some sort of sequential container of targets"
+ * Initally I should probably make a linked list of targets.
+ * Each target could be a struct that contains:
+ *			an array containing the dependencies
+ *			a char* array with each entry containing a single rule (line)
+ *
+ * Later when I am actually trying to execute the target's rules
+ * I can try to use strcmp(3) to compare that the current target I am trying to
+ * execute matches the entry of the target array that I am currently looking at
+ *
+ * Completed issues (I think):
+ * 				Issue 1
+ *				Issue 2
+ *				Issue 3
+ *				Issue 4
+ */
+
+
 /* PROTOTYPES */
 /* Helper function
  * arg_parse will use this to count number of arguments
@@ -33,22 +63,22 @@ static int countArg(char* line){
 								}
 						}
 	}
+	aCounter++;
 				return aCounter;
 }
 
 /* Parse Argument
  * Takes original pointer and processes it to parse arguments
- *
+ * by checking for whitespace inbetween characters
+ * and null terminator
  */
-char** arg_parse(char* line) {
+char** arg_parse(char* line, int *argcp) {
   char* currArg;
 	int argsInserted = 0;
-	int aCounter = 0;
 
-	aCounter = countArg(line);
-	aCounter++;
-	char** arguments = (char**) malloc(aCounter*sizeof(char*));
-	arguments[aCounter-1] = 0;
+	*argcp = countArg(line);
+	char** arguments = (char**) malloc(*argcp*sizeof(char*));
+	arguments[*argcp-1] = 0;
 
 	while(*line != '\0'){
 		if(isspace(*line)){
