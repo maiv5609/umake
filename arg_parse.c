@@ -16,15 +16,20 @@
  *			target
  *			dependencies
  *			rules
+ *
  * "This should include some sort of sequential container of targets"
  * Initally I should probably make a linked list of targets.
+ *
  * Each target could be a struct that contains:
  *			an array containing the dependencies
  *			a char* array with each entry containing a single rule (line)
  *
- * Later when I am actually trying to execute the target's rules
- * I can try to use strcmp(3) to compare that the current target I am trying to
- * execute matches the entry of the target array that I am currently looking at
+ * After you collect the target information umake will read from it's
+ * command-line argments(file?)
+ * when it does this you will need to compare the current command-line argument
+ * being read and use strcmp(3) to compare that to my first target and if it
+ * doesn't match the first target move onto the next one.
+ * execute the target's rules if strcmp(3) returns 0 (the two strings are equal).
  *
  * Completed issues (I think):
  * 				Issue 1
@@ -69,8 +74,7 @@ static int countArg(char* line){
 
 /* Parse Argument
  * Takes original pointer and processes it to parse arguments
- * by checking for whitespace inbetween characters
- * and null terminator
+ * by checking for whitespaces and null terminators inbetween characters
  */
 char** arg_parse(char* line, int *argcp) {
   char* currArg;
