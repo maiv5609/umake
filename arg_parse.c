@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include <ctype.h>
 #include "arg_parse.h"
 
@@ -50,7 +51,7 @@ static int countArg(char* line);
  */
 static int countArg(char* line){
 	int aCounter = 0;
-				int argFound = 0;
+	int argFound = 0;
 	while(*line != '\0'){
 						if(*line != ' ' && argFound == 0){
 								argFound++;
@@ -69,7 +70,7 @@ static int countArg(char* line){
 						}
 	}
 	aCounter++;
-				return aCounter;
+	return aCounter;
 }
 
 /* Parse Argument
@@ -80,23 +81,66 @@ char** arg_parse(char* line, int *argcp) {
   char* currArg;
 	int argsInserted = 0;
 
+	//Target variables
+	bool targetFound = false;
+	char* name;
+	char** dependencies;
+	char** rules;
+
 	*argcp = countArg(line);
 	char** arguments = (char**) malloc(*argcp*sizeof(char*));
 	arguments[*argcp-1] = 0;
 
-	while(*line != '\0'){
-		if(isspace(*line)){
-			line++;
-		}else{
-			currArg = line;
-			arguments[argsInserted] = currArg;
-			argsInserted++;
-			while(!isspace(*line) && *line != '\0'){
-					line++;
-			}
+	//target check and collection
+	char* colonP = strchr(line, ':'); //returns location of : or NULL if not found
+	if(colonP != NULL){ // target found
+		while(*line != '\0'){
 			if(isspace(*line)){
-					*line = '\0';
-					line++;
+				line++; //whitespace skip
+			}else{
+				if (targetFound == false){
+					//target has already been confirmed to be found
+					//set first argument to target name
+					name = line;
+					//insert null pointer at : location
+					//increment once
+					//parse rest of line normally and add to dependencies
+					//assume lines that come after this block are rules for target
+					//do not parse arguments for rules
+					//store whole lines in rules
+					//when targets are run later do normal parsing and execution for rules
+				}else{
+					currArg = line;
+					arguments[argsInserted] = currArg;
+					argsInserted++;
+					while(!isspace(*line) && *line != '\0'){
+							line++;
+					}
+					if(isspace(*line)){
+							*line = '\0';
+							line++;
+					}
+				}
+
+				targetFound == true;
+			}
+		}
+	}else{
+		//regular parsing of commands
+		while(*line != '\0'){
+			if(isspace(*line)){
+				line++;
+			}else{
+				currArg = line;
+				arguments[argsInserted] = currArg;
+				argsInserted++;
+				while(!isspace(*line) && *line != '\0'){
+						line++;
+				}
+				if(isspace(*line)){
+						*line = '\0';
+						line++;
+				}
 			}
 		}
 	}

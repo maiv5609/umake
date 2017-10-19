@@ -1,5 +1,6 @@
-	ls -l
+umake.o: umake.c arg_parse.h
+	gcc -c umake.c
 
-	ls
+arg_parse.o: arg_parse.c arg_parse.h
+	gcc -c arg_parse.c
 
-	ls -l

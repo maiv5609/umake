@@ -5,7 +5,7 @@ typedef struct targetList{
 	char* currTarget; //char* or char of target's name
 	char** dependencies;	//array of target's dependencies
 	char** rules;	//array of target's rules
-	struct targetList *next;	//pointer to node of next target (or null if last child)
+	struct targetList* next;	//pointer to node of next target (or null if last child)
 } targetList;
 
 //tList is the global list of targets that I am adjusting
