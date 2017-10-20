@@ -22,10 +22,11 @@ void* findTargetnode(char* name, targetList* list){
 	}else if (strcmp(list->currTarget, name) == 0){
 		 //target found return contents
 
+		 /*
 		 dprintf(2, "Name: %s \n", name);
 		 dprintf(2, "Dependencies: %s \n", list->dependencies);
 		 dprintf(2, "Rules: %s \n \n", list->rules);
-		 
+		 */
 		 return list->rules;
 	 }else{
 		 //not found, return next node
