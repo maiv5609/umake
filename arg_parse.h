@@ -18,10 +18,9 @@ tempTarget* target_parse(char *line);
 
 
 
+
 //parse rules for target
 //assume lines that come after this block are rules for target
 //do not parse arguments for rules
 //store whole lines in rules
 //when targets are run later do normal parsing and execution for rules
-
-//dprintf(2, "Current Rule, ")

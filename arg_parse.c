@@ -47,40 +47,6 @@
  */
 static int countArg(char* line);
 
-/* Helper function
- * arg_parse will use this to parse a line if it detects that it is a target
- */
-
-
-
-/* Helper function for arg_parse
- * Takes in copy of pointer and counts number of arguments
- */
-static int countArg(char* line){
-	int aCounter = 0;
-	int argFound = 0;
-	while(*line != '\0'){
-						if(*line != ' ' && argFound == 0){
-								argFound++;
-								if(argFound == 1){
-										aCounter++;
-								}
-								line++;
-						}else{
-								if(*line != '\0' && !isspace(*line)){
-										argFound++;
-										line++;
-								}else if (isspace(*line)){
-										argFound = 0;
-										line++;
-								}
-						}
-	}
-	aCounter++;
-	return aCounter;
-}
-
-
 /* Parse Argument
  * Takes original pointer and processes it to parse arguments
  * by checking for whitespaces and null terminators inbetween characters
@@ -112,7 +78,36 @@ char** arg_parse(char* line, int *argcp) {
 	return arguments;
 }
 
+/* Helper function for arg_parse
+ * Takes in copy of pointer and counts number of arguments
+ */
+static int countArg(char* line){
+	int aCounter = 0;
+	int argFound = 0;
+	while(*line != '\0'){
+						if(*line != ' ' && argFound == 0){
+								argFound++;
+								if(argFound == 1){
+										aCounter++;
+								}
+								line++;
+						}else{
+								if(*line != '\0' && !isspace(*line)){
+										argFound++;
+										line++;
+								}else if (isspace(*line)){
+										argFound = 0;
+										line++;
+								}
+						}
+	}
+	aCounter++;
+	return aCounter;
+}
 
+/* Parsing Function
+ * arg_parse will use this to parse a line if it detects that it is a target
+ */
 struct tempTarget* target_parse(char *line){
 	tempTarget* curr = malloc(sizeof(tempTarget));
 
@@ -128,11 +123,6 @@ struct tempTarget* target_parse(char *line){
 			//colonP actually points to the beginning of the dependencies
 			//assign line to dependencies, will parse normally when needed
 			curr->dependencies = colonP;
-
 	}
-	//dprintf(2, "currtarget: %s \n \n", name);
-	//dprintf(2, "currdependencies: %s \n \n", dependencies);
-	//Program received signal SIGSEGV, Segmentation fault.
-	//0x0000000000400eaf in target_parse (line=0x603240 "arg_parse.o") at arg_parse.c:137
 	return curr;
 }
