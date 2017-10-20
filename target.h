@@ -3,8 +3,8 @@
  */
 typedef struct targetList{
 	char* currTarget; //char* or char of target's name
-	char** dependencies;	//array of target's dependencies
-	char** rules;	//array of target's rules
+	char* dependencies;	//line of target's dependencies
+	char* rules;	//target's rules
 	struct targetList* next;	//pointer to node of next target (or null if last child)
 } targetList;
 
@@ -18,4 +18,4 @@ targetList* tList;
 char* getRules(char* currRule);
 void* findTarget(char* name);
 void* findTargetnode(char* name, targetList* list);
-void addNode(char* name, char** dependencies, char** rules);
+void addNode(char* name, char* dependencies, char* rules);

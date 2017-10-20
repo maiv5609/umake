@@ -41,10 +41,17 @@
 
 
 /* PROTOTYPES */
+
 /* Helper function
  * arg_parse will use this to count number of arguments
  */
 static int countArg(char* line);
+
+/* Helper function
+ * arg_parse will use this to parse a line if it detects that it is a target
+ */
+
+
 
 /* Helper function for arg_parse
  * Takes in copy of pointer and counts number of arguments
@@ -73,6 +80,7 @@ static int countArg(char* line){
 	return aCounter;
 }
 
+
 /* Parse Argument
  * Takes original pointer and processes it to parse arguments
  * by checking for whitespaces and null terminators inbetween characters
@@ -81,68 +89,50 @@ char** arg_parse(char* line, int *argcp) {
   char* currArg;
 	int argsInserted = 0;
 
-	//Target variables
-	bool targetFound = false;
-	char* name;
-	char** dependencies;
-	char** rules;
-
 	*argcp = countArg(line);
 	char** arguments = (char**) malloc(*argcp*sizeof(char*));
 	arguments[*argcp-1] = 0;
 
-	//target check and collection
-	char* colonP = strchr(line, ':'); //returns location of : or NULL if not found
-	if(colonP != NULL){ // target found
-		while(*line != '\0'){
-			if(isspace(*line)){
-				line++; //whitespace skip
-			}else{
-				if (targetFound == false){
-					//target has already been confirmed to be found
-					//set first argument to target name
-					name = line;
-					//insert null pointer at : location
-					//increment once
-					//parse rest of line normally and add to dependencies
-					//assume lines that come after this block are rules for target
-					//do not parse arguments for rules
-					//store whole lines in rules
-					//when targets are run later do normal parsing and execution for rules
-				}else{
-					currArg = line;
-					arguments[argsInserted] = currArg;
-					argsInserted++;
-					while(!isspace(*line) && *line != '\0'){
-							line++;
-					}
-					if(isspace(*line)){
-							*line = '\0';
-							line++;
-					}
-				}
-
-				targetFound == true;
+	while(*line != '\0'){
+		if(isspace(*line)){
+			line++;
+		}else{
+			currArg = line;
+			arguments[argsInserted] = currArg;
+			argsInserted++;
+			while(!isspace(*line) && *line != '\0'){
+					line++;
 			}
-		}
-	}else{
-		//regular parsing of commands
-		while(*line != '\0'){
 			if(isspace(*line)){
-				line++;
-			}else{
-				currArg = line;
-				arguments[argsInserted] = currArg;
-				argsInserted++;
-				while(!isspace(*line) && *line != '\0'){
-						line++;
-				}
-				if(isspace(*line)){
-						*line = '\0';
-						line++;
-				}
+					*line = '\0';
+					line++;
 			}
 		}
 	}
 	return arguments;
+}
+
+
+struct tempTarget* target_parse(char *line){
+	tempTarget* curr = malloc(sizeof(tempTarget));
+
+	char* colonP = strchr(line, ':'); //returns location of : or NULL if not found
+	if(colonP != NULL){ // target location found
+			while(isspace(*line)){
+				line++; //whitespace skip
+			}
+			//target has already been confirmed to be found
+			*colonP = '\0';
+			colonP++;
+			curr->targetName = line;
+			//colonP actually points to the beginning of the dependencies
+			//assign line to dependencies, will parse normally when needed
+			curr->dependencies = colonP;
+
+	}
+	//dprintf(2, "currtarget: %s \n \n", name);
+	//dprintf(2, "currdependencies: %s \n \n", dependencies);
+	//Program received signal SIGSEGV, Segmentation fault.
+	//0x0000000000400eaf in target_parse (line=0x603240 "arg_parse.o") at arg_parse.c:137
+	return curr;
 }

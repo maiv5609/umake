@@ -31,7 +31,7 @@ void* findTargetnode(char* name, targetList* list){
  /* Function used to add a target to the list
   * creates new node and makes this new node the head of the previous list
   */
-void addNode(char* name, char** dependencies, char** rules){
+void addNode(char* name, char* dependencies, char* rules){
 	targetList* n = malloc(sizeof(targetList));
 	if(!n){
 		perror("malloc");
