@@ -19,4 +19,3 @@ char* getRules(char* currRule);
 void* findTarget(char* name);
 void* findTargetnode(char* name, targetList* list);
 void addNode(char* name, char* dependencies, char* rules);
-void printNode();

@@ -5,3 +5,11 @@ umake.o: umake.c arg_parse.h
 umake: umake.o arg_parse.o
 	gcc -o umake umake.o arg_parse.o
 
+all: umake
+umake: umake.o arg_parse.o
+	gcc -o umake umake.o arg_parse.o
+all: umake
+clean:
+	rm umake
+all: umake
+

@@ -21,9 +21,11 @@ void* findTargetnode(char* name, targetList* list){
 		return NULL;
 	}else if (strcmp(list->currTarget, name) == 0){
 		 //target found return contents
-		 //dprintf(2, "Name: %s \n", name);
-		 //dprintf(2, "Dependencies: %s \n", list->dependencies);
-		 //dprintf(2, "Rules: %s \n \n", list->rules);
+
+		 dprintf(2, "Name: %s \n", name);
+		 dprintf(2, "Dependencies: %s \n", list->dependencies);
+		 dprintf(2, "Rules: %s \n \n", list->rules);
+		 
 		 return list->rules;
 	 }else{
 		 //not found, return next node
@@ -44,6 +46,7 @@ void addNode(char* name, char* dependencies, char* rules){
 	//apprantly Strdupa does the same thing but free memory automatically when you exit the funtion where it was called.
 	n->currTarget = strdup(name); //I might need to free memory here
 	n->dependencies = dependencies;
+	n->rules = rules;
 	n->next = tList; //adds rest of list to tail
 	tList = n;
 }

@@ -1,9 +1,7 @@
-all: umake 
-umake: umake.o arg_parse.o 
-	gcc -o umake umake.o arg_parse.o
-	echo Done
+all: umake
+umake: umake.o arg_parse.o
+	ls -l
+all: umake
 clean:
-	rm umake
-	rm arg_parse.o
-	rm umake.o
-
+	ls -l
+all: umake
