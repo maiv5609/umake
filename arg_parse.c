@@ -110,16 +110,19 @@ static int countArg(char* line){
  */
 struct tempTarget* target_parse(char *line){
 	tempTarget* curr = malloc(sizeof(tempTarget));
+  char* currLine = strdup(line);
   //dprintf(2, "CurrLine: %s \n", line);
 
-	char* colonP = strchr(line, ':'); //returns location of : or NULL if not found
+	char* colonP = strchr(currLine, ':'); //returns location of : or NULL if not found
 	*colonP = '\0';
 	colonP++;
-	curr->targetName = strdup(line);
+	curr->targetName = strdup(currLine);
 	//colonP actually points to the beginning of the dependencies
 	//assign line to dependencies, will parse normally when needed
 	curr->dependencies = strdup(colonP);
-  //dprintf(2, "Name: %s \n", curr->targetName);
-	//dprintf(2, "Dependencies: %s \n \n", curr->dependencies);
+  /*
+  dprintf(2, "Name: %s \n", curr->targetName);
+	dprintf(2, "Dependencies: %s \n \n", curr->dependencies);
+  */
 	return curr;
 }

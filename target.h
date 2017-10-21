@@ -1,3 +1,5 @@
+
+
 /* Structure that will hold the target's name
  * an array of the target's dependencies, and the target's rules
  */
@@ -20,7 +22,7 @@ typedef struct ruleList{
 targetList* tList;
 
 //collects rules for current target
-ruleList* rList;
+ruleList* rList; 
 
 
 void addRule (char* line);

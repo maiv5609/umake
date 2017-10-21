@@ -23,19 +23,22 @@ void* findTargetnode(char* name, targetList* list){
 		return NULL;
 	}else if (strcmp(list->currTarget, name) == 0){
 		 //target found return contents
-		 ruleList* current = &list;
+		 //ruleList current = ((struct targetList *)list.rules);
 
 		 //char* currentRule = current->currRule;
 
-		 /*
+
 		 dprintf(2, "Name: %s \n", name);
 		 dprintf(2, "Dependencies: %s \n", list->dependencies);
-		 dprintf(2, "Rules: %s \n \n", rList->currRule);
-		 */
+		 dprintf(2, "Rules: %s \n \n", (list->rules)->currRule);
+		 
+
 		 //https://stackoverflow.com/questions/23178741/access-members-of-a-structure-from-void-pointer-inside-a-structure
 		 //This page might detail how to handle looking at a value inside a nested struct
 
-		 dprintf(2, "Rules: %s \n \n", ((struct ruleList *)current.rules->currRule));
+		 //test this line dprintf(2, "Rules: %s \n \n", (list->rules)->currRule);
+		 //dprintf(2, "Rules: %s \n \n", (list->rules)->currRule);
+
 		 return list->rules;
 	 }else{
 		 //not found, return next node
@@ -66,8 +69,8 @@ void addRule (char* line){
 		perror("malloc");
 		exit(1);
 	}
-	dprintf(2, "Curr Rule: %s \n", line);
-	list->currRule = strdup(line); //seg faults
+	//dprintf(2, "Curr Rule: %s \n", line);
+	list->currRule = strdup(line);
 	list->next = rList;
 	rList = list;
 

@@ -1,6 +1,7 @@
 all: umake
 umake: umake.o arg_parse.o
 	ls -l
+	cd odijef
 all: umake
 clean:
 	ls -l
