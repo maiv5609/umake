@@ -1,9 +1,11 @@
 all: umake
-umake: umake.o arg_parse.o
-	ls -l
-	cd odijef
-all: umake
+umake: umake.o arg_parse.o 
+	echo -o umake umake.o arg_parse.o
+	echo wqoiduqwdo
+	echo Done
+arg3: ewfwefio
 clean:
-	ls -l
-all: umake
-
+	echo umake
+	echo arg_parse.o
+	echo umake.o
+arg4: oiwejd

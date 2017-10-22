@@ -16,13 +16,14 @@ typedef struct targetList{
 typedef struct ruleList{
 	char* currRule;
 	struct ruleList* next;
+	int size;
 }ruleList;
 
 //tList is the global list of targets that I am adjusting
 targetList* tList;
 
 //collects rules for current target
-ruleList* rList; 
+ruleList* rList;
 
 
 void addRule (char* line);

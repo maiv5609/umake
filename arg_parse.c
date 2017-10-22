@@ -121,8 +121,9 @@ struct tempTarget* target_parse(char *line){
 	//assign line to dependencies, will parse normally when needed
 	curr->dependencies = strdup(colonP);
   /*
+  printf("\nTarget Parsed \n");
   dprintf(2, "Name: %s \n", curr->targetName);
-	dprintf(2, "Dependencies: %s \n \n", curr->dependencies);
+	dprintf(2, "Dependencies: %s \n", curr->dependencies);
   */
 	return curr;
 }

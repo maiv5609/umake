@@ -5,7 +5,6 @@
 #include <string.h>
 #include "target.h"
 
-
 /* function to get find indicated target
  * will return null if list is empty or not found in list
  * adjusts pointer to whichever node's name matches the one I am searching for
@@ -13,8 +12,6 @@
 void* findTarget(char* name){
 	return findTargetnode(name, tList);
 }
-
-
 /* Helper function for findTarget
  *
  */
@@ -23,23 +20,12 @@ void* findTargetnode(char* name, targetList* list){
 		return NULL;
 	}else if (strcmp(list->currTarget, name) == 0){
 		 //target found return contents
-		 //ruleList current = ((struct targetList *)list.rules);
+		 if((list->rules)->size >= 1){
+			 return list->rules;
+		 }else{
+			 return NULL;
+		 }
 
-		 //char* currentRule = current->currRule;
-
-
-		 dprintf(2, "Name: %s \n", name);
-		 dprintf(2, "Dependencies: %s \n", list->dependencies);
-		 dprintf(2, "Rules: %s \n \n", (list->rules)->currRule);
-		 
-
-		 //https://stackoverflow.com/questions/23178741/access-members-of-a-structure-from-void-pointer-inside-a-structure
-		 //This page might detail how to handle looking at a value inside a nested struct
-
-		 //test this line dprintf(2, "Rules: %s \n \n", (list->rules)->currRule);
-		 //dprintf(2, "Rules: %s \n \n", (list->rules)->currRule);
-
-		 return list->rules;
 	 }else{
 		 //not found, return next node
 		 return findTargetnode(name, list->next);
@@ -55,12 +41,25 @@ void addNode(char* name, char* dependencies, ruleList* rules){
 		perror("malloc");
 		exit(1);
 	}
+
+	/*
+	dprintf(2, "adding 1st Rule: %s \n", rules->currRule);
+	dprintf(2, "adding 2nd Rule: %s \n", (rules->next)->currRule);
+	*/
+
 	//assignment of variables
 	n->currTarget = strdup(name); //I need to free memory here
 	n->dependencies = dependencies;
 	n->rules = rules;
 	n->next = tList; //adds rest of list to tail
 	tList = n;
+
+	/*
+	if((tList->rules)->currRule != NULL){
+		dprintf(2, "accessing 1st Rule: %s \n", (tList->rules)->currRule);
+		dprintf(2, "accessing 2nd Rule: %s \n", ((tList->rules)->next)->currRule);
+	}
+	*/
 }
 
 void addRule (char* line){
@@ -69,9 +68,11 @@ void addRule (char* line){
 		perror("malloc");
 		exit(1);
 	}
+
 	//dprintf(2, "Curr Rule: %s \n", line);
 	list->currRule = strdup(line);
 	list->next = rList;
 	rList = list;
-
+	rList->size = (rList->size)+1;
+	//dprintf(2, "Rule added: %s \n", rList->currRule);
 }
