@@ -1,16 +1,14 @@
-
-
-/* Structure that will hold the target's name
- * an array of the target's dependencies, and the target's rules
+/* Target node
+ * Rules will be held in a linked list that is attached to each target
  */
 typedef struct targetList{
-	char* currTarget; //char* or char of target's name
-	char* dependencies;	//line of target's dependencies
-	struct ruleList* rules;	//target's rules
-	struct targetList* next;	//pointer to node of next target (or null if last child)
+	char* currTarget;
+	char* dependencies;
+	struct ruleList* rules;
+	struct targetList* next;
 } targetList;
 
-/* Structure will hold rules in a linked list
+/* Rule Node
  *
  */
 typedef struct ruleList{
@@ -19,20 +17,32 @@ typedef struct ruleList{
 	int size;
 }ruleList;
 
-//tList is the global list of targets that I am adjusting
+/* Global list of targets
+ *
+ */
 targetList* tList;
 
-//collects rules for current target
-ruleList* rList;
-
-
-void addRule (char* line);
-
-/* function to read current target's rules
- * accesses current target's rule and returns the rule as a line (char*?)
- * will probably have to loop through until we hit a null pointer on the array
+/* findTargetnode
+ * function to get find indicated target
+ * will return null if list is empty or not found in list
+ * continues through list until null or target found
  */
-char* getRules(char* currRule);
-void* findTarget(char* name);
 void* findTargetnode(char* name, targetList* list);
+
+/* addNode
+ * Function used to add a target to the list
+ * creates new node and makes this new node the head of the previous list
+ */
 void addNode(char* name, char* dependencies, ruleList* rules);
+
+
+
+/* Collects rules for current target
+ * Once a new target is found this list will be copied
+ * and attached to a target node
+ */
+ruleList* rList;
+/* addRule
+ * Used to add node to rule list if new rule is found
+ */
+void addRule (char* line);

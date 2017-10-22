@@ -1,26 +1,21 @@
 /* tempTarget will be used to store target info without linking to list
- *
+ * Will only temporarily hold this information while program finds if
+ * this target has rules
  */
 typedef struct tempTarget{
-	char* targetName; //char* or char of target's name
-	char* dependencies;	//line of target's dependencies
+	char* targetName;
+	char* dependencies;
 } tempTarget;
 
-/* Will take in a char* and return an array of pointers to each argument
- * Will take and seperate line into seperate arguments using whitespace
+/* arg_parse
+ * Takes original pointer and processes it to parse arguments
+ * by checking for whitespaces and null terminators inbetween characters
  */
 char** arg_parse(char *line, int *argcp);
 
-/* Will take in line and parse target name and dependencies
- * storing in a tempTarget
+
+/* traget_parse
+ * arg_parse will use this to parse a line if it detects that it is a target
+ * the struct will hold target info while program continues to look for upcoming rules
  */
 tempTarget* target_parse(char *line);
-
-
-
-
-//parse rules for target
-//assume lines that come after this block are rules for target
-//do not parse arguments for rules
-//store whole lines in rules
-//when targets are run later do normal parsing and execution for rules
