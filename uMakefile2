@@ -1,15 +1,11 @@
+umake: umake.o arg_parse.o 
+	gcc -o umake umake.o arg_parse.o
+	echo Done
+arg_parse.o: arg_parse.c arg_parse.h
+	gcc -c arg_parse.c
 umake.o: umake.c arg_parse.h
 	gcc -c umake.c
-	gcc -c umake.c
-
-umake: umake.o arg_parse.o
-	gcc -o umake umake.o arg_parse.o
-
-all: umake
-umake: umake.o arg_parse.o
-	gcc -o umake umake.o arg_parse.o
-all: umake
 clean:
-	rm umake
-all: umake
-
+	rm umake *.o
+test:
+	echo testing no dep

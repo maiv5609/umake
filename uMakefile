@@ -1,12 +1,7 @@
-all: umake
 umake: umake.o arg_parse.o 
-	echo -o umake umake.o arg_parse.o
-	echo wqoiduqwdo
 	echo Done
-arg3: ewfwefio
-	echo arg3
-clean:
-	echo umake
-	echo arg_parse.o
-	echo umake.o
-arg4: oiwejd
+arg_parse.o: arg_parse.c arg_parse.h
+	echo arg_parse.o executed
+umake.o: umake.c arg_parse.h
+	echo umake.o executed
+

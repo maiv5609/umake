@@ -26,8 +26,11 @@ targetList* tList;
  * function to get find indicated target
  * will return null if list is empty or not found in list
  * continues through list until null or target found
+ * if dep is 1 then functin will check for dependencies
+ * If a target has dependencies then it will call a function
+ * to handle those dependencies
  */
-void* findTargetnode(char* name, targetList* list);
+void* findTargetnode(char* name, targetList* list, int dep);
 
 /* addNode
  * Function used to add a target to the list
