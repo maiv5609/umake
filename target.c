@@ -41,8 +41,6 @@ void* findTargetnode(char* name, targetList* list, int dep){
 					 depTargets = arg_parse(list->dependencies, &argcp);
 					 while(depTargets[depCounter] != NULL){
 						 currDep = strdup(depTargets[depCounter]);
-						 dprintf(2, "Dep %d %s\n", depCounter,currDep);
-						 //seg fault is caused here when you try to get dep rules
 						 currDepRules = (ruleList *)findTargetnode(currDep, tList, 0);
 						 traverseRules(currDepRules);
 						 depCounter++;

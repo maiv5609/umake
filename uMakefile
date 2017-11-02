@@ -1,7 +1,9 @@
-umake: umake.o arg_parse.o 
+umake: umake.o arg_parse.o target.o
+	gcc -o umake umake.o arg_parse.o target.o
 	echo Done
 arg_parse.o: arg_parse.c arg_parse.h
-	echo arg_parse.o executed
+	gcc -c arg_parse.c
 umake.o: umake.c arg_parse.h
-	echo umake.o executed
-
+	gcc -c umake.c
+target.o:
+	gcc -c target.c
