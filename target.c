@@ -11,12 +11,6 @@
  *
  */
 
-/* exeDep
- * is passed dependencies and handles calling other functions to
- * execute the dependencies in orders
- */
-//exeDep(char* dependencies, targetList* list);
-
 void* findTargetnode(char* name, targetList* list, int dep){
 	char** depTargets;
 	char* currDep;

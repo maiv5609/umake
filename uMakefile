@@ -1,10 +1,6 @@
-CC=gcc
-umake: umake.o arg_parse.o target.o
-	gcc -o umake umake.o arg_parse.o target.o
-	echo Done
-arg_parse.o: arg_parse.c arg_parse.h
-	gcc -c arg_parse.c
-umake.o: umake.c arg_parse.h
-	gcc -c umake.c
-target.o:
-	gcc -c target.c
+A:
+	echo target A
+B:
+	echo target B
+C:
+	echo target C
