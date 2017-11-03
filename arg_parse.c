@@ -64,6 +64,23 @@ static int countArg(char* line){
 	return aCounter;
 }
 
+void env_process(char *line){
+  char* eVariable;
+  char* eValue;
+  eVariable = line;
+
+  while(*line != '\0'){
+    if(*line == '='){
+      *line = '\0';
+      line++;
+      eValue = line;
+    }else{
+      line++;
+    }
+  }
+  setenv(eVariable, eValue, 1);
+}
+
 struct tempTarget* target_parse(char *line){
 	tempTarget* curr = malloc(sizeof(tempTarget));
   char* currLine = strdup(line);

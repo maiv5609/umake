@@ -1,3 +1,4 @@
+CC=gcc
 umake: umake.o arg_parse.o target.o
 	gcc -o umake umake.o arg_parse.o target.o
 	echo Done
