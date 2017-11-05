@@ -1,12 +1,12 @@
-CC=gcc
+ONE=${TWO}
 A: B C
 	echo target A
 	echo Target A2
-BB=testv
+TWO=THREE
 B: test2
 	echo target B
 	echo target B2
 C: test3
-	echo target C
+	echo ${ONE}${TWO} test
 	echo target C2
 AA=avar
