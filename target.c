@@ -49,7 +49,7 @@ void* findTargetnode(char* name, targetList* list, int dep){
 		 */
 		 return list->rules;
  	}else{
-		if((list->next)->currTarget == NULL){
+		if(list->next == NULL){
 			//not found, end of list
 			return NULL;
 		}else{
@@ -74,20 +74,6 @@ void addNode(char* name, char* dependencies, ruleList* rules){
 }
 
 void addRule (char* line){
-	/*
-	ruleList* rNode = malloc(sizeof(ruleList));
-	if(!rNode){
-		perror("malloc");
-		exit(1);
-	}
-	rNode->currRule = strdup(line);
-	dprintf(2, "Rule: %s\n", rList->currRule);
-	rNode->next = rList;
-	rList = list;
- */
- /* https://stackoverflow.com/questions/20418624/how-to-check-if-a-linked-list-is-empty
-  *
-	*/
 	ruleList* rNode = (ruleList*)malloc(sizeof(ruleList));
 	rNode->currRule = strdup(line);
 	rNode->next = NULL;
@@ -100,6 +86,5 @@ void addRule (char* line){
 		//Head of empty list
 		rList = rNode;
 	}
-
-	//dprintf(2, "Rule 2: %s\n\n", (rList->next)->currRule);
+	//dprintf(2, "Rule: %s\n", list->currRule);
 }

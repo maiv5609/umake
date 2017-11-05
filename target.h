@@ -39,7 +39,6 @@ void* findTargetnode(char* name, targetList* list, int dep);
 void addNode(char* name, char* dependencies, ruleList* rules);
 
 
-
 /* Collects rules for current target
  * Once a new target is found this list will be copied
  * and attached to a target node

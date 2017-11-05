@@ -16,7 +16,7 @@ static int countArg(char* line);
 void env_process(char *line){
   char* eVariable;
   char* eValue;
-  dprintf(2, "eVariable before: %s\n", line);
+  //dprintf(2, "eVariable before: %s\n", line);
 
   eVariable = line;
 
@@ -95,9 +95,13 @@ struct tempTarget* target_parse(char *line){
   char* currLine = strdup(line);
 	char* colonP = strchr(currLine, ':');
 
-	*colonP = '\0';
-	colonP++;
-	curr->targetName = strdup(currLine);
-	curr->dependencies = strdup(colonP);
-	return curr;
+  if(colonP == NULL){
+    return NULL;
+  }else{
+    *colonP = '\0';
+    colonP++;
+    curr->targetName = strdup(currLine);
+    curr->dependencies = strdup(colonP);
+    return curr;
+  }
 }

@@ -1,9 +1,12 @@
-A: test1
+CC=gcc
+A: B C
 	echo target A
 	echo Target A2
+BB=testv
 B: test2
 	echo target B
 	echo target B2
 C: test3
 	echo target C
 	echo target C2
+AA=avar
