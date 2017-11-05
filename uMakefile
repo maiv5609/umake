@@ -1,6 +1,9 @@
-A:
+A: test1
 	echo target A
-B:
+	echo Target A2
+B: test2
 	echo target B
-C:
+	echo target B2
+C: test3
 	echo target C
+	echo target C2

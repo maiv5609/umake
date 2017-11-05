@@ -29,11 +29,11 @@ void env_process(char *line){
       line++;
     }
   }
-  dprintf(2, "eVariable: %s\n", eVariable);
-  dprintf(2, "eValue: %s\n", eValue);
+  //dprintf(2, "eVariable: %s\n", eVariable);
+  //dprintf(2, "eValue: %s\n", eValue);
   setenv(eVariable, eValue, 1);
   if(getenv(eVariable)){
-    dprintf(2, "SET: %s\n\n", getenv(eVariable));
+    //dprintf(2, "SET: %s\n\n", getenv(eVariable));
   }
 }
 
