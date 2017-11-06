@@ -16,8 +16,6 @@ static int countArg(char* line);
 void env_process(char *line){
   char* eVariable;
   char* eValue;
-  //dprintf(2, "eVariable before: %s\n", line);
-
   eVariable = line;
 
   while(*line != '\0'){
@@ -29,12 +27,7 @@ void env_process(char *line){
       line++;
     }
   }
-  //dprintf(2, "eVariable: %s\n", eVariable);
-  //dprintf(2, "eValue: %s\n", eValue);
   setenv(eVariable, eValue, 1);
-  if(getenv(eVariable)){
-    //dprintf(2, "SET: %s\n\n", getenv(eVariable));
-  }
 }
 
 char** arg_parse(char* line, int *argcp) {
@@ -87,8 +80,6 @@ static int countArg(char* line){
 	aCounter++;
 	return aCounter;
 }
-
-
 
 struct tempTarget* target_parse(char *line){
 	tempTarget* curr = malloc(sizeof(tempTarget));

@@ -23,14 +23,10 @@ void* findTargetnode(char* name, targetList* list, int dep){
 	}else if (strcmp(list->currTarget, name) == 0){
 		 //target found return contents
 			if(dep == 1){
+			 //dep check and execution
 			 if (list->dependencies == NULL){
 				 //no dependencies do nothing
 			 }else{
-				 //has dependencies send them somewhere to process each argument as target
-				 //call arg_parse to seperate targets
-				 //find the targetnode with that target name
-				 //store that target name
-				 //take name and go through list and execute rules if there are any
 				 depTargets = arg_parse(list->dependencies, &argcp);
 				 while(depTargets[depCounter] != NULL){
 					 currDep = strdup(depTargets[depCounter]);
@@ -41,12 +37,6 @@ void* findTargetnode(char* name, targetList* list, int dep){
 				 }
 			 }
 		 }
-		 /*
-		 dprintf(2, "Target found: %s\n", list->currTarget);
-		 dprintf(2, "Dep: %s\n", list->dependencies);
-		 dprintf(2, "First rule: %s\n", (list->rules)->currRule);
-		 dprintf(2, "Second rule: %s\n\n", ((list->rules)->next)->currRule);
-		 */
 		 return list->rules;
  	}else{
 		if(list->next == NULL){
@@ -59,8 +49,22 @@ void* findTargetnode(char* name, targetList* list, int dep){
 	}
  }
 
+/*
+targetList* n = malloc(sizeof(targetList));
+if(!n){
+	perror("malloc");
+	exit(1);
+}
+
+n->currTarget = strdup(name);
+n->dependencies = dependencies;
+n->rules = rules;
+n->next = tList;
+tList = n;
+*/
+
 void addNode(char* name, char* dependencies, ruleList* rules){
-	targetList* n = malloc(sizeof(targetList));
+	targetList* n = (targetList*)malloc(sizeof(targetList));
 	if(!n){
 		perror("malloc");
 		exit(1);
@@ -75,6 +79,10 @@ void addNode(char* name, char* dependencies, ruleList* rules){
 
 void addRule (char* line){
 	ruleList* rNode = (ruleList*)malloc(sizeof(ruleList));
+	if(!rNode){
+		perror("malloc");
+		exit(1);
+	}
 	rNode->currRule = strdup(line);
 	rNode->next = NULL;
 	if(rList != NULL){
@@ -83,8 +91,6 @@ void addRule (char* line){
 		}
 		rList->next = rNode;
 	}else{
-		//Head of empty list
 		rList = rNode;
 	}
-	//dprintf(2, "Rule: %s\n", list->currRule);
 }

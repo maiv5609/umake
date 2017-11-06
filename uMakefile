@@ -7,6 +7,6 @@ B: test2
 	echo target B
 	echo target B2
 C: test3
-	echo ${ONE}${TWO} test
+	echo ${ONE}dqdwq${TWO} ${ONE}}festest
 	echo target C2
 AA=avar
