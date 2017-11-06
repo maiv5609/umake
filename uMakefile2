@@ -1,3 +1,16 @@
+ONE=${TWO}
+A: B C
+	echo target A
+	echo Target A2
+TWO=THREE
+B: test2
+	echo target B
+	echo target B2
+C: test3
+	echo ${ONE}dqdwq${TWO} ${ONE}}festest
+	echo target C2
+AA=avar
+
 umake: umake.o arg_parse.o target.o
 	gcc -o umake umake.o arg_parse.o target.o
 	echo Done
@@ -7,3 +20,14 @@ umake.o: umake.c arg_parse.h
 	gcc -c umake.c
 target.o:
 	gcc -c target.c
+
+
+umake: umake.o arg_parse.o target.o
+	cc -g -o umake -Wall umake.o arg_parse.o target.o
+	echo Done
+arg_parse.o: arg_parse.c arg_parse.h
+	cc -c arg_parse.c
+umake.o: umake.c arg_parse.h
+	cc -c umake.c
+target.o:
+	cc -c target.c

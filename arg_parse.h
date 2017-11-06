@@ -14,7 +14,7 @@ typedef struct tempTarget{
 char** arg_parse(char *line, int *argcp);
 
 
-/* traget_parse
+/* target_parse
  * arg_parse will use this to parse a line if it detects that it is a target
  * the struct will hold target info while program continues to look for upcoming rules
  */

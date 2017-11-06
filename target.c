@@ -8,10 +8,6 @@
 #include "arg_parse.h"
 #include "umake.h"
 
-/* PROTOTYPES
- *
- */
-
 void* findTargetnode(char* name, targetList* list, int dep){
 	char** depTargets;
 	char* currDep;
@@ -49,27 +45,12 @@ void* findTargetnode(char* name, targetList* list, int dep){
 	}
  }
 
-/*
-targetList* n = malloc(sizeof(targetList));
-if(!n){
-	perror("malloc");
-	exit(1);
-}
-
-n->currTarget = strdup(name);
-n->dependencies = dependencies;
-n->rules = rules;
-n->next = tList;
-tList = n;
-*/
-
 void addNode(char* name, char* dependencies, ruleList* rules){
 	targetList* n = (targetList*)malloc(sizeof(targetList));
 	if(!n){
 		perror("malloc");
 		exit(1);
 	}
-
 	n->currTarget = strdup(name);
 	n->dependencies = dependencies;
 	n->rules = rules;
