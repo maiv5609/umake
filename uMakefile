@@ -9,4 +9,3 @@ B: test2
 C: test3
 	echo ${ONE}dqdwq${TWO} ${ONE}}festest
 	echo target C2
-AA=avar

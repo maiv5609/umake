@@ -1,3 +1,6 @@
+cc -g -o umake -Wall umake.c arg_parse.c target.c
+
+
 ONE=${TWO}
 A: B C
 	echo target A
@@ -9,25 +12,22 @@ B: test2
 C: test3
 	echo ${ONE}dqdwq${TWO} ${ONE}}festest
 	echo target C2
-AA=avar
+
+
+
+
 
 umake: umake.o arg_parse.o target.o
-	gcc -o umake umake.o arg_parse.o target.o
+	gcc -o umake -Wall umake.o arg_parse.o target.o
 	echo Done
-arg_parse.o: arg_parse.c arg_parse.h
-	gcc -c arg_parse.c
-umake.o: umake.c arg_parse.h
+umake.o:
 	gcc -c umake.c
+arg_parse.o:
+	gcc -c arg_parse.c
 target.o:
 	gcc -c target.c
 
-
-umake: umake.o arg_parse.o target.o
-	cc -g -o umake -Wall umake.o arg_parse.o target.o
-	echo Done
-arg_parse.o: arg_parse.c arg_parse.h
-	cc -c arg_parse.c
-umake.o: umake.c arg_parse.h
-	cc -c umake.c
-target.o:
-	cc -c target.c
+./umake[0x400f13]
+./umake[0x400e12]
+./umake[0x400b19]
+0x00000000024e7860
