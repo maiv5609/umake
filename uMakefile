@@ -10,10 +10,13 @@ B: test2
 C: test3
 	echo ${ONE}dqdwq${TWO} ${ONE}}festest
 	echo target C2
+ 
 	echo fwefwef
 	echo fwefwewd
+
 D: testd
-	echo ${ONE}dqdwq${TWO} ${ONE}}festest
+	echo D1
 	echo target D2
 	echo fwefwef
 	echo fwefwewd
+
