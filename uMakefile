@@ -6,6 +6,14 @@ TWO=THREE
 B: test2
 	echo target B
 	echo target B2
+	echo fwefwef
 C: test3
 	echo ${ONE}dqdwq${TWO} ${ONE}}festest
 	echo target C2
+	echo fwefwef
+	echo fwefwewd
+D: testd
+	echo ${ONE}dqdwq${TWO} ${ONE}}festest
+	echo target D2
+	echo fwefwef
+	echo fwefwewd

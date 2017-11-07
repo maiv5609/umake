@@ -66,12 +66,14 @@ void addRule (char* line){
 	}
 	rNode->currRule = strdup(line);
 	rNode->next = NULL;
-	if(rList != NULL){
-		while(rList->next != NULL){
-			rList = rList->next;
-		}
-		rList->next = rNode;
-	}else{
+	if(rList == NULL){
 		rList = rNode;
+	}else{
+		ruleList* current = rList;
+		while(current->next != NULL){
+			current = current->next;
+		}
+		current->next = rNode;
 	}
+
 }
