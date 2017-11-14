@@ -1,3 +1,4 @@
+# Sample comment
 ONE=${TWO}
 A: B C
 	echo target A
