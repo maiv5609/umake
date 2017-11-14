@@ -1,4 +1,5 @@
-# Sample comment
+#first comment
+wfwefwef# Sample comment
 ONE=${TWO}
 A: B C
 	echo target A
@@ -16,7 +17,7 @@ C: test3
 	echo fwefwewd
 
 D: testd
-	echo D1
+	echo D1 #comment
 	echo target D2
 	echo fwefwef
 	echo fwefwewd
