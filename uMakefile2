@@ -1,6 +1,8 @@
 cc -g -o umake -Wall umake.c arg_parse.c target.c
 
 
+#first comment
+wfwefwef# Sample comment
 ONE=${TWO}
 A: B C
 	echo target A
@@ -18,13 +20,22 @@ C: test3
 	echo fwefwewd
 
 D: testd
-	echo D1
+	echo D1 #comment
 	echo target D2
 	echo fwefwef
 	echo fwefwewd
 
 
 
+umake: umake.o arg_parse.o target.o
+	gcc -o umake -Wall umake.o arg_parse.o target.o
+	echo Done
+umake.o:
+	gcc -c umake.c
+arg_parse.o:
+	gcc -c arg_parse.c
+target.o:
+	gcc -c target.c
 
 
 

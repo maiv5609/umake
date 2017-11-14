@@ -21,6 +21,14 @@ typedef struct ruleList{
  */
 targetList* tList;
 
+
+/* depCheck
+ * takes in target name and its dependencies
+ * checks if target doesnt exist or if any of the dependency files are newer
+ * returns 0 if rules need to be executed, 1 otherwise
+ */
+int depCheck(char* target, char** dependencies);
+
 /* findTargetnode
  * function to get find indicated target
  * if dep is 1 then function will check for dependencies
