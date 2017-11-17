@@ -1,6 +1,9 @@
 cc -g -o umake -Wall umake.c arg_parse.c target.c
 
 
+FILE *freopen(const char *path, const char *mode, FILE *stream);
+
+
 #first comment
 wfwefwef# Sample comment
 ONE=${TWO}

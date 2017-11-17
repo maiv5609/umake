@@ -3,4 +3,9 @@ hello: hello.c
 	echo done
 clean:
 	rm hello
-	echo done
+	echo removed
+work:
+	date >> log
+	ls -a > files
+	wc -l < files
+	wc -l < files > line_count > log
