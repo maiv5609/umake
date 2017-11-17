@@ -53,14 +53,7 @@ void* findTargetnode(char* name, targetList* list, int dep){
 	}
  }
 
-/* depCheck
- * takes in target name and its dependencies
- * does all checks in current working directory
- * checks if target doesnt exist or if any of the dependency files are newer
- * returns 0 if rules need to be executed, 1 otherwise
- */
 int depCheck(char* target, char** dependencies){
-	//look into using the stat function in order to pull the time of last access
 	int counter = 0;
 	double timeDif = 0.0;
 	struct stat targetStat;
@@ -70,30 +63,17 @@ int depCheck(char* target, char** dependencies){
 		//target doesn't exist
 		return 0;
 	}else{
-	  //printf("Target: \"%s\" exists\n", target);
-		//printf("Time: %s\n\n", ctime(&targetStat.st_mtime));
 		//target exists check if deps are newer than target
 		while(dependencies[counter] != NULL){
 			stat(dependencies[counter], &currDepStat);
 			timeDif = difftime(targetStat.st_mtime, currDepStat.st_mtime);
 			if(timeDif < 0){
-				//printf("dep is newer then target\n");
 				return 0;
-			}else{
-				//printf("target is newer than dep\n");
 			}
 			counter++;
 		}
 		return 1;
 	}
-
-
-	//printf("Target: %s, Time: %s\n","umake.c" , ctime(&targetStat.st_mtime));
-	//loop through dependencies to check stats vs target
-	//while(dependencies[counter] != NULL){
-
-	//}
-
 	return 1;
 }
 
