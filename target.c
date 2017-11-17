@@ -62,6 +62,8 @@ int depCheck(char* target, char** dependencies){
 	if(stat(target, &targetStat)){
 		//target doesn't exist
 		return 0;
+	}else if(dependencies[0] == NULL){
+		return 0;
 	}else{
 		//target exists check if deps are newer than target
 		while(dependencies[counter] != NULL){
