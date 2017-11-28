@@ -14,7 +14,7 @@ void* findTargetnode(char* name, targetList* list, int dep){
 	char** depTargets;
 	char* currDep;
 	ruleList* currDepRules;
-	int argcp = 0;
+	int argc = 0;
 	int depCounter = 0;
 	if(list->currTarget == NULL){
 		return NULL;
@@ -25,13 +25,16 @@ void* findTargetnode(char* name, targetList* list, int dep){
 			 if (list->dependencies == NULL){
 				 //no dependencies do nothing
 			 }else{
-				 depTargets = arg_parse(list->dependencies, &argcp);
+				 depTargets = arg_parse(list->dependencies, &argc);
 					if(!depCheck(name, depTargets)){
 						//returned 0 need to execute rules
 						while(depTargets[depCounter] != NULL){
 						 currDep = strdup(depTargets[depCounter]);
-						 currDepRules = (ruleList *)findTargetnode(currDep, tList, 0);
-						 traverseRules(currDepRules);
+						 //
+						 if((ruleList *)findTargetnode(currDep, tList, 1) != NULL){
+							 currDepRules = (ruleList *)findTargetnode(currDep, tList, 0);
+							 traverseRules(currDepRules);
+						 }
 						 depCounter++;
 						 free(currDep);
 					 	}

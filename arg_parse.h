@@ -11,7 +11,7 @@ typedef struct tempTarget{
  * Takes original pointer and processes it to parse arguments
  * by checking for whitespaces and null terminators inbetween characters
  */
-char** arg_parse(char *line, int *argcp);
+char** arg_parse(char *line, int *argc);
 
 
 /* target_parse
@@ -26,4 +26,4 @@ tempTarget* target_parse(char *line);
  * AA=test
  * will parse arguments from line and create environment variable
  */
-void env_process(char *line);
+ void env_process(char *line);

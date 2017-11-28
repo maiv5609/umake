@@ -1,12 +1,9 @@
-hello: hello.c
-	gcc -o hello hello.c
-	echo done
-clean:
-	rm hello
-	echo removed
-work:
-	date >> log
-	ls -a > files
-	wc -l < files
-	wc -l < files > line_count
-
+umake: umake.o arg_parse.o target.o
+	gcc -o umake -Wall umake.o arg_parse.o target.o
+	echo Done
+umake.o:
+	gcc -c umake.c
+arg_parse.o:
+	gcc -c arg_parse.c
+target.o:
+	gcc -c target.c

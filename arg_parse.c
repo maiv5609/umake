@@ -30,13 +30,13 @@ void env_process(char *line){
   setenv(eVariable, eValue, 1);
 }
 
-char** arg_parse(char* line, int *argcp) {
+char** arg_parse(char* line, int *argc) {
   char* currArg;
 	int argsInserted = 0;
 
-	*argcp = countArg(line);
-	char** arguments = (char**) malloc(*argcp*sizeof(char*));
-	arguments[*argcp-1] = 0;
+	*argc = countArg(line);
+	char** arguments = (char**) malloc(*argc*sizeof(char*));
+	arguments[*argc-1] = 0;
 
 	while(*line != '\0'){
 		if(isspace(*line)){
@@ -62,14 +62,14 @@ static int countArg(char* line){
 	int argFound = 0;
 	while(*line != '\0'){
 	   if(*line != ' ' && argFound == 0){
-	      argFound++;
+       argFound++;
 				if(argFound == 1){
 				      aCounter++;
 			  }
 				line++;
 	    }else{
 		      if(*line != '\0' && !isspace(*line)){
-					  argFound++;
+            argFound++;
             line++;
 					}else if (isspace(*line)){
             argFound = 0;
@@ -77,7 +77,7 @@ static int countArg(char* line){
 					}
 			}
 	}
-	aCounter++;
+  aCounter++;
 	return aCounter;
 }
 
