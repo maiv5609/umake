@@ -30,7 +30,6 @@ void* findTargetnode(char* name, targetList* list, int dep){
 						//returned 0 need to execute rules
 						while(depTargets[depCounter] != NULL){
 						 currDep = strdup(depTargets[depCounter]);
-						 //
 						 if((ruleList *)findTargetnode(currDep, tList, 1) != NULL){
 							 currDepRules = (ruleList *)findTargetnode(currDep, tList, 0);
 							 traverseRules(currDepRules);
